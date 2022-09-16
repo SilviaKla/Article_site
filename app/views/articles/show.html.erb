@@ -1,0 +1,16 @@
+<div class="container bg-white">
+  <div class="row">
+    <div class="col-12">
+    <h1><%= @article.title %></h1>
+    <em><%= @article.category %> - <%= @article.author %></em>
+    <p><%= @article.content %></p>
+    </div>
+  </div>
+  <div class="row" data-controller="insert-reviews">
+    <div data-insert-reviews-target="items">
+    <%= render "articles/review", article: @article, review: @review %>
+    </div>
+    <%= render "reviews/form", article: @article, review: @review %>
+  </div>
+  <%= link_to "Back to all articles", articles_path %>
+</div>
