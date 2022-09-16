@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row">
+    <% @articles.each do |article| %>
+    <div class="cards-index col-12 col-lg-4">
+      <%= link_to(article_path(article.id)) do %>
+        <div class="card-article mb-5">
+          <h2 class="mb-2"><%= article.title %></h2>
+          <p><%= "#{article.content.first(150)}..." %></p>
+        </div>
+      <% end %>
+      </div>
+      <% end %>
+  </div>
+</div>

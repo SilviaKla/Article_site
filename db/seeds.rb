@@ -29,10 +29,11 @@ categories = ["Business", "Culture", "Entertainement", "Politics", "Environment"
 
 
 50.times do
-  Article.new(title: Faker::Book.title,
+  articles = Article.new(title: Faker::Book.title,
               author: Faker::Name.name,
               category: categories.sample,
               content: Faker::Lorem.paragraph(sentence_count: 10),
               url: Faker::Internet.url,
               user: users.sample)
+  articles.save!
 end

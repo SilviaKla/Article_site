@@ -1,0 +1,10 @@
+<% if current_user %>
+    <%= simple_form_for([article, review], data: {
+      # turbo: false ,
+      insert_reviews_target: "form",
+      action: "submit->insert-reviews#send"}) do |f| %>
+    <%= f.input :content, placeholder: "Type your review here"  %>
+    <%= f.input :rating, collection: 0..5 %>
+    <%= f.button :submit %>
+    <% end %>
+<% end %>
