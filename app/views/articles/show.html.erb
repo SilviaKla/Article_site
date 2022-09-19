@@ -4,12 +4,21 @@
     <h1><%= @article.title %></h1>
     <em><%= @article.category %> - <%= @article.author %></em>
     <p><%= @article.content %></p>
+    <div>
+      <%= link_to(article_favourites_path(@article.id), data: {turbo_method: :post}) do %>
+        <i class="fa-solid fa-heart" style="color:grey"></i>
+      <% end %>
+    </div>
+    <div>
+      <%= link_to(article_favourite_path(@article.id), data: {turbo_method: :delete}) do %>
+        <i class="fa-solid fa-heart" style="color:red"></i>
+      <% end %>
+    </div>
     </div>
   </div>
   <div class="row" data-controller="insert-reviews">
     <%@reviews.each do |review|%>
         <%= render "articles/review", article: @article, review: review %>
-        <p> <%=review.id%></p>
         <%= link_to "Delete", article_review_path(@article, review.id), data: {turbo_method: :delete} %>
     <%end%>
 
