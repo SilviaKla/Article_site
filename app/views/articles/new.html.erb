@@ -1,0 +1,13 @@
+<h3>Add your article</h3>
+  <div class="container">
+    <%= simple_form_for ([@article])  do |f| %>
+      <%= f.input :title, label: "Title" %>
+      <%= f.input :author, label: "Author"%>
+      <%= f.input :url, label:"Article link"%>
+      <%= f.input :content, label:"Content"%>
+      <%= f.input :category, label:"Category", collection: ["Business", "Culture", "Entertainement", "Politics", "Environment"]%>
+
+
+      <%= f.submit label:"Add", class: 'btn btn-flat' %>
+    <% end %>
+  </div>

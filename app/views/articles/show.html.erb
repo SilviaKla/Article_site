@@ -7,10 +7,20 @@
     </div>
   </div>
   <div class="row" data-controller="insert-reviews">
+    <%@reviews.each do |review|%>
+        <%= render "articles/review", article: @article, review: review %>
+        <p> <%=review.id%></p>
+        <%= link_to "Delete", article_review_path(@article, review.id), data: {turbo_method: :delete} %>
+    <%end%>
+
+
     <div data-insert-reviews-target="items">
     <%= render "articles/review", article: @article, review: @review %>
     </div>
     <%= render "reviews/form", article: @article, review: @review %>
   </div>
+  <% if @article.user == current_user%>
+    <%= link_to "Delete", article_path, data: {turbo_method: :delete} %>
+  <%end%>
   <%= link_to "Back to all articles", articles_path %>
 </div>

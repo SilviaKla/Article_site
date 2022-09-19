@@ -28,6 +28,13 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def destroy
+    # @article = Article.find(params[:article_id])
+
+    @review = Review.find(@article, params[:id])
+    @review.delete
+  end
+
   private
 
   def review_params

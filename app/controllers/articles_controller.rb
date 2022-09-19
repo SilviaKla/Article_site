@@ -8,6 +8,7 @@ class ArticlesController < ApplicationController
 
   def show
     @review = Review.new
+    @reviews = @article.reviews
   end
 
   def new
@@ -15,7 +16,9 @@ class ArticlesController < ApplicationController
   end
 
   def create
+
     @article = Article.new(article_params)
+    @article.user = current_user
     if @article.save!
       redirect_to article_path(@article.id)
     else
