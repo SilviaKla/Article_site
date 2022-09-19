@@ -5,15 +5,14 @@
     <em><%= @article.category %> - <%= @article.author %></em>
     <p><%= @article.content %></p>
     <div data-controller="favourites">
-
        <div>
         <%= link_to(article_favourite_path(@article.id), data: {turbo_method: :delete}) do %>
-          <i data-favourites-target ="unlike" data-action = "click->favourites#toggle" class="fa-solid fa-heart <%= "d-none" if current_user.favourites.include?(@article) %>" style="color:red"></i>
+          <i data-favourites-target ="unlike" data-action = "click->favourites#toggle" class="fa-solid fa-heart <%= "d-none" unless Favourite.find_by(user_id: @user.id, article_id: @article.id)%>" style="color:red"></i>
         <% end %>
       </div>
       <div>
         <%= link_to(article_favourites_path(@article.id), data: {turbo_method: :post}) do %>
-          <i data-favourites-target ="like" data-action = "click->favourites#toggle" class="fa-solid fa-heart <%= "d-none" unless current_user.favourites.include?(@article) %>" style="color:grey"></i>
+          <i data-favourites-target ="like" data-action = "click->favourites#toggle" class="fa-solid fa-heart <%= "d-none" if Favourite.find_by(user_id: @user.id, article_id: @article.id) %>" style="color:grey"></i>
         <% end %>
       </div>
 

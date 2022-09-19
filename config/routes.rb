@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: "articles#index"
-  get "profile", to: "pages#profil"
+  get "profile", to: "pages#profile"
   resources :articles do
     resources :reviews, only: [ :create, :destroy ]
     resources :favourites, only: [ :create,:destroy ]

@@ -3,12 +3,18 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
 
   def index
-    @articles = Article.all
+    if params[:query].present?
+      sql_query = "title ILIKE :query OR author ILIKE :query OR category ILIKE :query"
+      @articles = Article.where(sql_query, query: "%#{params[:query]}%")
+    else
+      @articles = Article.all
+    end
   end
 
   def show
     @review = Review.new
     @reviews = @article.reviews
+    @user = current_user
   end
 
   def new

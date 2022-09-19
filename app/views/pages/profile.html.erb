@@ -1,0 +1,17 @@
+<h1>Dashboard</h1>
+<div>
+  <h2>Favourites</h2>
+
+  <%@favourites.each do |favorite|%>
+   <p> <%=favorite.article.title%></p>
+   <%=link_to "Delete", article_favourite_path(favorite.article.id, favorite), data: {turbo_method: :delete}%>
+  <%end%>
+</div>
+
+<div>
+  <h2>Article added</h2>
+  <%@articles.each do |article|%>
+    <p><%=article.title%></p>
+    <%= link_to "Delete", article_path(article), data: {turbo_method: :delete} %>
+  <%end%>
+</div>
